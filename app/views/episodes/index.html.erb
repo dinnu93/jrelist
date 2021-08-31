@@ -34,10 +34,10 @@
             </audio>
           <p class="card-text">
             <%= episode.description %>
-            <%= link_to "Open in Spotify", episode.uri, class: "btn btn-success", target: "_blank" %>
           </p>
           <p class="card-footer">
-            <%= date_converter(episode.release_date) %>&ensp;<span class="bi bi-clock">&nbsp;<%= minute_converter(episode.duration_ms) %> minutes</span>
+            <%= date_converter(episode.release_date) %>&ensp;<span class="bi bi-clock">&nbsp;<%= minute_converter(episode.duration_ms) %> minutes</span><br>
+            <%= link_to "Open in Spotify", episode.uri, class: "btn btn-spotify btn-success", target: "_blank" %>
           </p>
         </div>
       </div>
