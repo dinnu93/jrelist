@@ -1,0 +1,87 @@
+<nav class="navbar fixed-top navbar-expand-lg navbar-dark bg-dark">
+  <div class="container-fluid">
+    <a class="navbar-brand" href="/"><%= image_tag "jrelist.png" %></a>
+    <div class="d-flex w-100 align-items-center">
+      <form class="w-50 ms-5">
+        <input class="form-control" type="search" placeholder="Search" aria-label="Search" name="search">
+      </form>
+    </div>
+  </div>
+</nav>
+
+<p id="notice"><%= notice %></p>
+<div class="container">
+  <div class="apple_pagination">
+  <div class="page_info">
+    <%= page_entries_info @episodes %>
+  </div>
+  <%= will_paginate @episodes, page_links: false, container: false, previous_label: '<span class="bi bi-chevron-left"></span>Prev', next_label: 'Next<span class="bi bi-chevron-right"></span>' %>
+</div>
+</div>
+
+<div class="container episodes">
+  <div class="row">
+    <% @episodes.each do |episode| %>
+    <div class="col">
+      <div class="card">
+        <a href=<%= episode.web_url %> target="_blank">
+        <%= image_tag episode.image_url, class: "episode-image" %>
+        </a>
+        <div class="card-body">
+          <h5 class="card-title"><%= link_to episode.name, episode.web_url, target: "_blank" %></h5>
+            <audio controls>
+              <source src=<%= episode.audio_preview_url %> type="audio/mp3">
+            </audio>
+          <p class="card-text">
+            <%= episode.description %>
+            <%= link_to "Open in Spotify", episode.uri, class: "btn btn-success", target: "_blank" %>
+          </p>
+          <p class="card-footer">
+            <%= date_converter(episode.release_date) %>&ensp;<span class="bi bi-clock">&nbsp;<%= minute_converter(episode.duration_ms) %> minutes</span>
+          </p>
+        </div>
+      </div>
+      
+      
+    </div>
+    <% end %>
+  </div>
+</div>
+<!-- <table>
+  <thead>
+    <tr>
+      <th>Audio preview url</th>
+      <th>Description</th>
+      <th>Duration ms</th>
+      <th>Web url</th>
+      <th>Id</th>
+      <th>Image url</th>
+      <th>Name</th>
+      <th>Release date</th>
+      <th>Uri</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @episodes.each do |episode| %>
+      <tr>
+        <td><%= episode.audio_preview_url %></td>
+        <td><%= episode.description %></td>
+        <td><%= episode.duration_ms %></td>
+        <td><%= episode.web_url %></td>
+        <td><%= episode.id %></td>
+        <td><%= episode.image_url %></td>
+        <td><%= episode.name %></td>
+        <td><%= episode.release_date %></td>
+        <td><%= episode.uri %></td>
+        <td><%= link_to 'Show', episode %></td>
+        <td><%= link_to 'Edit', edit_episode_path(episode) %></td>
+        <td><%= link_to 'Destroy', episode, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table> -->
+
+<br>
+

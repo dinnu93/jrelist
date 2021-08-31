@@ -1,0 +1,69 @@
+@font-face {
+	font-family: Avenir;
+	font-weight: 300;
+	font-style: normal;
+	src: url('AvenirLTStd-Light.otf') format('truetype');
+}
+@font-face {
+	font-family: Avenir;
+	font-weight: 400;
+	font-style: normal;
+	src: url('AvenirLTStd-Book.otf') format('truetype');
+}
+@font-face {
+	font-family: Avenir;
+	font-weight: 500;
+	font-style: normal;
+	src: url('AvenirLTStd-Medium.otf') format('truetype');
+}
+@font-face {
+	font-family: Avenir;
+	font-weight: 800;
+	font-style: normal;
+	src: url('AvenirLTStd-Heavy.otf') format('truetype');
+}
+
+body, html {
+	font-family: Avenir;
+	font-weight: 400;
+	color: rgba(0,0,0,0.87);
+	background-color : #404040 !important;
+}
+.episodes {
+	background-color : #404040 !important;
+	margin-top:  50px;
+
+	.episode-image {
+		border-radius: 10px 10px 0 0;
+		widows: 250px;
+		height: 250px;
+	}
+
+	.card {
+		margin-bottom: 30px;
+		width: 250px;
+		height: 600px;
+		padding: 0;
+		border: solid 1px #404040;
+		border-radius: 10px;
+		audio {
+			width: 100%;
+		}
+		.card-title a {
+			text-decoration: none;
+			color: #404040;
+		}
+
+		.card-footer {
+			padding: 0;
+			position: absolute;
+			bottom: 0;
+			background-color: transparent;
+			padding-top: 10px;
+
+			.bi {
+				color: darkgreen;
+			}
+		}
+	}
+}

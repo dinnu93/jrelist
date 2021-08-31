@@ -1,0 +1,41 @@
+<nav class="navbar fixed-top navbar-expand-lg navbar-dark bg-dark">
+  <div class="container-fluid">
+    <a class="navbar-brand" href="/"><%= image_tag "jrelist.png" %></a>
+    <form class="d-flex">
+      <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
+    </form>
+  </div>
+</nav>
+
+<p id="notice"><%= notice %></p>
+<div class="container">
+  <div class="apple_pagination">
+  <div class="page_info">
+    
+  </div>
+  
+</div>
+</div>
+
+<div class="container episodes">
+  <div class="row">
+    <div class="col offset-4">
+      <div class="card">
+        <a href=<%= @episode.web_url %> target="_blank">
+        <%= image_tag @episode.image_url, class: "episode-image" %>
+        </a>
+        <div class="card-body">
+          <h5 class="card-title"><%= link_to @episode.name, @episode.web_url, target: "_blank" %></h5>
+          <p class="card-text">
+            <%= @episode.description %>
+          </p>
+          <p class="card-footer">
+            <%= date_converter(@episode.release_date) %>&ensp;<span class="bi bi-clock">&nbsp;<%= minute_converter(@episode.duration_ms) %> minutes</span>
+          </p>
+        </div>
+      </div>
+      
+      
+    </div>
+  </div>
+</div>
