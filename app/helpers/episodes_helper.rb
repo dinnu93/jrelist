@@ -9,7 +9,12 @@ module EpisodesHelper
 		return (ms/(60 * 1000)).to_i
 	end
 
-	def short_description(des)
-		return des[0..200]
+	def replace_newlines(s)
+		return s.gsub("\n","<br>")
 	end
+
+	def short_description(des)
+		return replace_newlines(des[0..200])
+	end
+	
 end

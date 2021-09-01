@@ -15,6 +15,7 @@ ActiveRecord::Schema.define(version: 0) do
   create_table "episodes", id: false, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci", force: :cascade do |t|
     t.string "audio_preview_url"
     t.text "description"
+    t.text "html_description"
     t.integer "duration_ms"
     t.string "web_url"
     t.string "id"
