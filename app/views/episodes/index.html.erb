@@ -3,7 +3,8 @@
     <a class="navbar-brand" href="/"><%= image_tag "jrelist.png" %></a>
     <div class="d-flex w-100 align-items-center">
       <form class="w-50 ms-5">
-        <input class="form-control" type="search" placeholder="Search" aria-label="Search" name="q" value=<%= @q %>>
+        <%= search_field_tag "q", @q, class: "form-control", placeholder: "Search" %>
+        
       </form>
     </div>
   </div>
