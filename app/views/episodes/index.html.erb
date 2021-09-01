@@ -3,7 +3,7 @@
     <a class="navbar-brand" href="/"><%= image_tag "jrelist.png" %></a>
     <div class="d-flex w-100 align-items-center">
       <form class="w-50 ms-5">
-        <input class="form-control" type="search" placeholder="Search" aria-label="Search" name="search">
+        <input class="form-control" type="search" placeholder="Search" aria-label="Search" name="q" value=<%= @q %>>
       </form>
     </div>
   </div>
@@ -33,10 +33,10 @@
               <source src=<%= episode.audio_preview_url %> type="audio/mp3">
             </audio>
           <p class="card-text">
-            <%= episode.description %>
+            <%= short_description(episode.description) %> <%= link_to "read more", "/episodes/#{episode.id}", target: "_blank" %>
           </p>
           <p class="card-footer">
-            <%= date_converter(episode.release_date) %>&ensp;<span class="bi bi-clock">&nbsp;<%= minute_converter(episode.duration_ms) %> minutes</span><br>
+            <%= date_converter(episode.release_date) %>&emsp;<span class="bi bi-clock">&nbsp;<%= minute_converter(episode.duration_ms) %> minutes</span><br>
             <%= link_to "Open in Spotify", episode.uri, class: "btn btn-spotify btn-success", target: "_blank" %>
           </p>
         </div>

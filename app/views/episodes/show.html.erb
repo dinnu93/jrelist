@@ -1,9 +1,11 @@
 <nav class="navbar fixed-top navbar-expand-lg navbar-dark bg-dark">
   <div class="container-fluid">
     <a class="navbar-brand" href="/"><%= image_tag "jrelist.png" %></a>
-    <form class="d-flex">
-      <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
-    </form>
+    <div class="d-flex w-100 align-items-center">
+      <form class="w-50 ms-5">
+        <input class="form-control" type="search" placeholder="Search" aria-label="Search" name="q" value=<%= @q %>>
+      </form>
+    </div>
   </div>
 </nav>
 
@@ -17,9 +19,9 @@
 </div>
 </div>
 
-<div class="container episodes">
+<div class="container episode">
   <div class="row">
-    <div class="col offset-4">
+    <div class="col offset-3">
       <div class="card">
         <a href=<%= @episode.web_url %> target="_blank">
         <%= image_tag @episode.image_url, class: "episode-image" %>
@@ -30,7 +32,8 @@
             <%= @episode.description %>
           </p>
           <p class="card-footer">
-            <%= date_converter(@episode.release_date) %>&ensp;<span class="bi bi-clock">&nbsp;<%= minute_converter(@episode.duration_ms) %> minutes</span>
+            <%= date_converter(@episode.release_date) %>&emsp;<span class="bi bi-clock">&nbsp;<%= minute_converter(@episode.duration_ms) %> minutes</span><br>
+            <%= link_to "Open in Spotify", @episode.uri, class: "btn btn-spotify btn-success", target: "_blank" %>
           </p>
         </div>
       </div>

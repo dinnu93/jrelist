@@ -8,4 +8,8 @@ module EpisodesHelper
 	def minute_converter(ms)
 		return (ms/(60 * 1000)).to_i
 	end
+
+	def short_description(des)
+		return des[0..200]
+	end
 end

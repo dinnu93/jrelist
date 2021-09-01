@@ -3,15 +3,33 @@ class EpisodesController < ApplicationController
 
   # GET /episodes or /episodes.json
   def index
-    if params[:search].blank?
-      @episodes = Episode.paginate(page: params[:page], per_page: 16)
+    q = params[:q]
+    if q.blank?
+      @q = ""
+      @episodes = Episode.paginate(page: params[:page], per_page: 15)
+    elsif q.match(/#[0-9]+/)
+      @q = q
+      @episode = Episode.search(q)[0]
+      redirect_to "/episodes/#{@episode.id}"
     else
-      
+      @q = q
+      @episodes = Episode.search(q, page: params[:page], per_page: 15)
     end
   end
 
   # GET /episodes/1 or /episodes/1.json
   def show
+    q = params[:q]
+    if q.blank?
+      @q = Episode.find(params[:id]).name
+    elsif q.match(/#[0-9]+/)
+      @q = q
+      @episode = Episode.search(q)[0]
+      redirect_to "/episodes/#{@episode.id}"
+    else
+      @q = q
+      redirect_to "/?q=#{@q}"
+    end
   end
 
   # GET /episodes/new
@@ -68,6 +86,6 @@ class EpisodesController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def episode_params
-      params.require(:episode).permit(:audio_preview_url, :description, :duration_ms, :web_url, :id, :image_url, :name, :release_date, :uri)
+      params.require(:episode).permit(:q, :audio_preview_url, :description, :duration_ms, :web_url, :id, :image_url, :name, :release_date, :uri)
     end
 end

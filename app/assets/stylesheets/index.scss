@@ -29,6 +29,69 @@ body, html {
 	color: rgba(0,0,0,0.87);
 	background-color : #404040 !important;
 }
+
+.apple_pagination {
+	background: #404040;
+	border: 1px solid #404040;
+	margin-top: 100px;
+	padding-bottom: 50px;
+	padding-right: 0.75rem;
+	text-align: center;
+	cursor: default;
+	.disabled {
+		color: #aaaaaa;
+		border: solid 1px #404040 !important;
+	}
+	.current {
+		font-style: normal;
+		font-weight: bold;
+		background-color: #bebebe;
+		display: inline-block;
+		width: 1.4em;
+		height: 1.4em;
+		line-height: 1.5;
+		-moz-border-radius: 1em;
+		-webkit-border-radius: 1em;
+		border-radius: 1em;
+		text-shadow: rgba(255, 255, 255, 0.8) 1px 1px 1px;
+	}
+	a {
+		text-decoration: none;
+		color: white;
+		&:hover, &:focus {
+			border:  solid 1px #404040;
+			text-decoration: none;
+			background-color: white;
+			color:  black;
+		}
+	}
+	.page_info {
+		color: white;
+		display: none;
+		padding-top: 0.8em;
+	}
+	.previous_page {
+		font-size: 1.25rem;
+		font-family: Avenir;
+		font-weight: 300;
+		padding: 5px 10px;
+		border-radius: 5px;
+		border: solid 1px #404040;
+		float: left;
+		background-color: #000;
+	}
+	.next_page {
+		font-size: 1.25rem;
+		font-family: Avenir;
+		font-weight: 300;
+		padding: 5px 10px;
+		border-radius: 5px;
+		border: solid 1px #404040;
+		float: right;
+		background-color: #000;
+	}
+}
+
 .episodes {
 	background-color : #404040 !important;
 	margin-top:  50px;
@@ -42,7 +105,7 @@ body, html {
 	.card {
 		margin-bottom: 30px;
 		width: 300px;
-		height: 650px;
+		height: 750px;
 		padding: 0;
 		border: solid 1px #404040;
 		border-radius: 10px;
@@ -53,7 +116,7 @@ body, html {
 			border-radius: 20px;
 			margin-top: 20px;
 			width: 100%;
-			margin-left: 28px;
+			/*margin-left: 28px;*/
 		}
 		.card-title a {
 			text-decoration: none;
@@ -66,9 +129,58 @@ body, html {
 			bottom: 0;
 			background-color: transparent;
 			padding-top: 10px;
-
+			width:  90%;
 			.bi {
 				color: darkgreen;
+				float: right;
+			    display: block;
+			}
+		}
+	}
+}
+
+.episode {
+	background-color : #404040 !important;
+
+	.episode-image {
+		border-radius: 10px 10px 0 0;
+		widows: 500px;
+		height: 500px;
+	}
+
+	.card {
+		margin-bottom: 30px;
+		width: 500px;
+		height: 1000px;
+		padding: 0;
+		border: solid 1px #404040;
+		border-radius: 10px;
+		audio {
+			width: 100%;
+		}
+		.btn-spotify {
+			border-radius: 20px;
+			margin-top: 20px;
+			width: 100%;
+			/*margin-left: 28px;*/
+		}
+		.card-title a {
+			text-decoration: none;
+			color: #404040;
+		}
+
+		.card-footer {
+			padding: 0;
+			position: absolute;
+			bottom: 0;
+			background-color: transparent;
+			padding-top: 10px;
+			width:  90%;
+			.bi {
+				color: darkgreen;
+				float: right;
+			    display: block;
+
 			}
 		}
 	}
