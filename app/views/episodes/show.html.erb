@@ -28,6 +28,9 @@
         </a>
         <div class="card-body">
           <h5 class="card-title"><%= link_to @episode.name, @episode.web_url, target: "_blank" %></h5>
+            <audio controls>
+              <source src=<%= @episode.audio_preview_url %> type="audio/mp3">
+            </audio>
           <p class="card-text">
             <%= raw replace_newlines(@episode.html_description) %>
           </p>
