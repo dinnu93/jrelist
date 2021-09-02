@@ -13,7 +13,7 @@ class EpisodesController < ApplicationController
       redirect_to "/episodes/#{@episode.id}"
     else
       @q = q
-      @episodes = Episode.search(q, page: params[:page], per_page: 15)
+      @episodes = Episode.search(q, operator: "or", match: :phrase, page: params[:page], per_page: 15)
     end
   end
 
