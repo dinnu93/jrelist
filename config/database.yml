@@ -49,6 +49,6 @@ test:
 #
 production:
   <<: *default
-  database: jrelist_production
-  username: jrelist
+  database: jrelist
+  username: root
   password: <%= ENV['JRELIST_DATABASE_PASSWORD'] %>
