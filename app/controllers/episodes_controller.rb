@@ -9,11 +9,11 @@ class EpisodesController < ApplicationController
       @episodes = Episode.paginate(page: params[:page], per_page: 15)
     elsif q.match(/#[0-9]+/)
       @q = q
-      @episode = Episode.search(q)[0]
+      @episode = Episode.where("MATCH (name, description) AGAINST ('#{q}' IN NATURAL LANGUAGE MODE)")[0]
       redirect_to "/episodes/#{@episode.id}"
     else
       @q = q
-      @episodes = Episode.search(q, operator: "or", page: params[:page], per_page: 15)
+      @episodes = Episode.where("MATCH (name, description) AGAINST ('#{q}' IN NATURAL LANGUAGE MODE)").paginate(page: params[:page], per_page: 15)
     end
   end
 
@@ -24,7 +24,7 @@ class EpisodesController < ApplicationController
       @q = Episode.find(params[:id]).name
     elsif q.match(/#[0-9]+/)
       @q = q
-      @episode = Episode.search(q)[0]
+      @episode = Episode.where("MATCH (name, description) AGAINST ('#{q}' IN NATURAL LANGUAGE MODE)")[0]
       redirect_to "/episodes/#{@episode.id}"
     else
       @q = q
