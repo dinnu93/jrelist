@@ -4,26 +4,61 @@
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
       <ul class="navbar-nav me-auto mb-2 mb-lg-0">
         <li class="nav-item dropdown">
-          <a href="#" class="nav-link dropdown-toggle" id="categoryDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">Podcast Topics</a>
+          <a href="#" class="nav-link dropdown-toggle" id="categoryDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">Select Topics</a>
           <ul class="dropdown-menu" aria-labelledby="categoryDropdown">
             <li>
-              <a class="dropdown-item" href="#">Archeology</a>
+              <%= link_to "Comedy", root_path(q: 'stand up comedian'), class: "dropdown-item" %>
             </li>
             <li>
-              <a class="dropdown-item" href="#">Neuroscience</a>
+              <%= link_to "Archeology", root_path(q: '"Graham Hancock" "Randall Carlson" "John Anthony West" "Robert Schoch"'), class: "dropdown-item" %>
             </li>
             <li>
-              <a class="dropdown-item" href="#">Artificial Intelligence</a>
+              <%= link_to "Neuroscience", root_path(q: 'Neuroscientist Neuroscience'), class: "dropdown-item" %>
+            </li>
+            <li>
+              <%= link_to "Artificial Intelligence", root_path(q: '"Artificial Intelligence" "AI"'), class: "dropdown-item" %>
+            </li>
+            <li>
+              <%= link_to "Philosophy", root_path(q: 'Philosophy Philosopher'), class: "dropdown-item" %>
+            </li>
+            <li>
+              <%= link_to "Nutrition", root_path(q: 'nutrition nutritional nutritionist'), class: "dropdown-item" %>
+            </li>
+            <li>
+              <%= link_to "Scientists", root_path(q: 'Scientist'), class: "dropdown-item" %>
+            </li>
+            <li>
+              <%= link_to "Mathematicians", root_path(q: 'Mathematician'), class: "dropdown-item" %>
+            </li>
+            <li>
+              <%= link_to "Inventors", root_path(q: 'Inventor "Elon Musk"'), class: "dropdown-item" %>
+            </li>
+            <li>
+              <%= link_to "Entrepreneurs", root_path(q: 'Entrepreneur CEO'), class: "dropdown-item" %>
             </li>
           </ul>
         </li>
         <li class="nav-item dropdown">
-          <a href="#" class="nav-link dropdown-toggle" id="guestDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">Selected Guests</a>
+          <a href="#" class="nav-link dropdown-toggle" id="guestDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">Select Guests</a>
           <ul class="dropdown-menu" aria-labelledby="guestDropdown">
-            <li><a class="dropdown-item" href="#">Action</a></li>
-            <li><a class="dropdown-item" href="#">Another action</a></li>
-            <li><hr class="dropdown-divider"></li>
-            <li><a class="dropdown-item" href="#">Something else here</a></li>
+            <% [
+              "Elon Musk", 
+              "Jordan Peterson", 
+              "Forrest Galante", 
+              "Bret Weinstein",
+              "Dave Chappelle",
+              "Shane Smith",
+              "Alex Jones",
+              "Randall Carlson",
+              "Graham Hancock",
+              "Steven Rinella"
+              ].each do |guest| %>
+            
+            <li>
+              <%= link_to guest, root_path(q: "\"#{guest}\"", search: "name"), class: "dropdown-item" %>
+            </li>
+            <% end %>
+            
           </ul>
         </li>
       </ul>

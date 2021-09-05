@@ -14,7 +14,14 @@ module EpisodesHelper
 	end
 
 	def short_description(des)
-		return replace_newlines(des[0..200])
+		html_tag = des.index("<")
+		if !html_tag.nil? && html_tag <= 200
+			html_tag_index = html_tag - 1
+			short_des = des[0..html_tag_index]
+		else
+			short_des = des[0..200]
+		end
+		return replace_newlines(short_des)
 	end
 	
 end

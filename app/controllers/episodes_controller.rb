@@ -9,11 +9,15 @@ class EpisodesController < ApplicationController
       @episodes = Episode.paginate(page: params[:page], per_page: 15)
     elsif q.match(/#[0-9]+/)
       @q = q
-      @episode = Episode.where("MATCH (name, description) AGAINST ('#{q}' IN NATURAL LANGUAGE MODE)")[0]
+      @episode = Episode.where("MATCH (name) AGAINST ('#{q}' IN NATURAL LANGUAGE MODE)")[0]
       redirect_to "/episodes/#{@episode.id}"
     else
       @q = q
-      @episodes = Episode.where("MATCH (name, description) AGAINST ('#{q}' IN NATURAL LANGUAGE MODE)").paginate(page: params[:page], per_page: 15)
+      if params[:search].blank?
+        @episodes = Episode.where("MATCH (name, description) AGAINST ('#{q}' IN NATURAL LANGUAGE MODE)").paginate(page: params[:page], per_page: 15)
+      elsif params[:search] == "name"
+        @episodes = Episode.where("MATCH (name) AGAINST ('#{q}' IN NATURAL LANGUAGE MODE)").paginate(page: params[:page], per_page: 15)
+      end
     end
   end
 
@@ -86,6 +90,6 @@ class EpisodesController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def episode_params
-      params.require(:episode).permit(:q, :audio_preview_url, :description, :duration_ms, :web_url, :id, :image_url, :name, :release_date, :uri)
+      params.require(:episode).permit(:q, :search, :audio_preview_url, :description, :duration_ms, :web_url, :id, :image_url, :name, :release_date, :uri)
     end
 end
