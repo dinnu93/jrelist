@@ -10,7 +10,11 @@ class EpisodesController < ApplicationController
     elsif q.match(/#[0-9]+/)
       @q = q
       @episode = Episode.where("MATCH (name) AGAINST ('#{q}' IN NATURAL LANGUAGE MODE)")[0]
-      redirect_to "/episodes/#{@episode.id}"
+      if @episode.blank?
+        render file: "#{Rails.root}/public/404", status: :not_found 
+      else
+        redirect_to "/episodes/#{@episode.id}"
+      end
     else
       @q = q
       if params[:search].blank?
@@ -29,7 +33,12 @@ class EpisodesController < ApplicationController
     elsif q.match(/#[0-9]+/)
       @q = q
       @episode = Episode.where("MATCH (name, description) AGAINST ('#{q}' IN NATURAL LANGUAGE MODE)")[0]
-      redirect_to "/episodes/#{@episode.id}"
+      
+      if @episode.blank?
+        render file: "#{Rails.root}/public/404", status: :not_found 
+      else
+        redirect_to "/episodes/#{@episode.id}"
+      end
     else
       @q = q
       redirect_to "/?q=#{@q}"
