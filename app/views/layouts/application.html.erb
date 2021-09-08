@@ -18,7 +18,14 @@
   
   <body>
     <%= yield %>
-    <script async custom-element="amp-ad" src="https://cdn.ampproject.org/v0/amp-ad-0.1.js"></script>
+    <amp-ad
+     layout="fixed"
+     width="300"
+     height="800"
+     type="adsense"
+     data-ad-client="ca-pub-8556906598758519"
+     data-ad-slot="8071340488">
+    </amp-ad>
     <div class="coffee">
       <%= link_to image_tag("https://cdn.buymeacoffee.com/widget/assets/coffee%20cup.svg"), "https://www.buymeacoffee.com/dinnu93", target: "_blank" %>
     </div>
