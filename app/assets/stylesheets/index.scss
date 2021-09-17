@@ -2,25 +2,25 @@
 	font-family: Avenir;
 	font-weight: 300;
 	font-style: normal;
-	src: url('AvenirLTStd-Light.otf') format('truetype');
+	src: font-url('AvenirLTStd-Light.otf') format('truetype');
 }
 @font-face {
 	font-family: Avenir;
 	font-weight: 400;
 	font-style: normal;
-	src: url('AvenirLTStd-Book.otf') format('truetype');
+	src: font-url('AvenirLTStd-Book.otf') format('truetype');
 }
 @font-face {
 	font-family: Avenir;
 	font-weight: 500;
 	font-style: normal;
-	src: url('AvenirLTStd-Medium.otf') format('truetype');
+	src: font-url('AvenirLTStd-Medium.otf') format('truetype');
 }
 @font-face {
 	font-family: Avenir;
 	font-weight: 800;
 	font-style: normal;
-	src: url('AvenirLTStd-Heavy.otf') format('truetype');
+	src: font-url('AvenirLTStd-Heavy.otf') format('truetype');
 }
 
 body, html {
