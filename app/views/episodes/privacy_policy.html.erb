@@ -1,0 +1,99 @@
+<nav class="navbar fixed-top navbar-expand-lg navbar-dark bg-dark">
+  <div class="container-fluid">
+    <a class="navbar-brand" href="/"><%= image_tag "jrelist.png" %></a>
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+        <li class="nav-item dropdown">
+          <a href="#" class="nav-link dropdown-toggle" id="categoryDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">Select Topics</a>
+          <ul class="dropdown-menu" aria-labelledby="categoryDropdown">
+            <li>
+              <%= link_to "Comedy", root_path(q: 'stand up comedian'), class: "dropdown-item" %>
+            </li>
+            <li>
+              <%= link_to "Archeology", root_path(q: '"Graham Hancock" "Randall Carlson" "John Anthony West" "Robert Schoch"'), class: "dropdown-item" %>
+            </li>
+            <li>
+              <%= link_to "Neuroscience", root_path(q: 'Neuroscientist Neuroscience'), class: "dropdown-item" %>
+            </li>
+            <li>
+              <%= link_to "Psychedelics", root_path(q: 'psychedelics fungi psychedelic'), class: "dropdown-item" %>
+            </li>
+            <li>
+              <%= link_to "Artificial Intelligence", root_path(q: '"Artificial Intelligence" "AI"'), class: "dropdown-item" %>
+            </li>
+            <li>
+              <%= link_to "Philosophy", root_path(q: 'Philosophy Philosopher'), class: "dropdown-item" %>
+            </li>
+            <li>
+              <%= link_to "Nutrition", root_path(q: 'nutrition nutritional nutritionist'), class: "dropdown-item" %>
+            </li>
+            <li>
+              <%= link_to "Scientists", root_path(q: 'Scientist'), class: "dropdown-item" %>
+            </li>
+            <li>
+              <%= link_to "Mathematicians", root_path(q: 'Mathematician'), class: "dropdown-item" %>
+            </li>
+            <li>
+              <%= link_to "Inventors", root_path(q: 'Inventor'), class: "dropdown-item" %>
+            </li>
+            <li>
+              <%= link_to "Entrepreneurs", root_path(q: 'Entrepreneur CEO'), class: "dropdown-item" %>
+            </li>
+            <li>
+              <%= link_to "Psychologists", root_path(q: 'psychologist psychology'), class: "dropdown-item" %>
+            </li>
+          </ul>
+        </li>
+        <li class="nav-item dropdown">
+          <a href="#" class="nav-link dropdown-toggle" id="guestDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">Select Guests</a>
+          <ul class="dropdown-menu" aria-labelledby="guestDropdown">
+            <% [
+              "Elon Musk", 
+              "Jordan Peterson", 
+              "Forrest Galante", 
+              "Bret Weinstein",
+              "Dave Chappelle",
+              "Shane Smith",
+              "Alex Jones",
+              "Randall Carlson",
+              "Graham Hancock",
+              "Steven Rinella"
+              ].each do |guest| %>
+            
+            <li>
+              <%= link_to guest, root_path(q: "\"#{guest}\"", search: "name"), class: "dropdown-item" %>
+            </li>
+            <% end %>
+            
+          </ul>
+        </li>
+      </ul>
+    </div>
+
+    <div class="d-flex w-100">
+      <form class="w-75 ms-5">
+        <input type="search" name="q" class="form-control"  placeholder="Search for podcasts, guests & topics">
+      </form>
+    </div>
+  </div>
+</nav>
+
+<p id="notice"><%= notice %></p>
+<div class="container privacy">
+  <ul>
+    <li>
+      Third party vendors, including Google, use cookies to serve ads based on a user's prior visits to your website or other websites.
+    </li>
+    <br>
+    <li>
+      Google's use of advertising cookies enables it and its partners to serve ads to your users based on their visit to your sites and/or other sites on the Internet.
+    </li>
+    <br>
+    <li>
+      Users may opt out of personalized advertising by visiting <a href="https://www.google.com/settings/ads" target="_blank">Ads Settings</a>. 
+    </li>
+
+  </ul>
+</div>
+
+
