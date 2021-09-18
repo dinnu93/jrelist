@@ -7,7 +7,7 @@ class EpisodesController < ApplicationController
     if q.blank?
       @q = ""
       @episodes = Episode.order(:release_date).reverse_order.paginate(page: params[:page], per_page: 15)
-    elsif q.match(/#[0-9]+/)
+    elsif q.match(/^#[0-9]+/)
       @q = q
       @episode = Episode.order(:release_date).where("MATCH (name) AGAINST ('#{q}' IN NATURAL LANGUAGE MODE)")[0]
       if @episode.blank?
@@ -30,7 +30,7 @@ class EpisodesController < ApplicationController
     q = params[:q]
     if q.blank?
       @q = Episode.find(params[:id]).name
-    elsif q.match(/#[0-9]+/)
+    elsif q.match(/^#[0-9]+/)
       @q = q
       @episode = Episode.order(:release_date).where("MATCH (name, description) AGAINST ('#{q}' IN NATURAL LANGUAGE MODE)")[0]
       
