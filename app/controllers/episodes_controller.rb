@@ -6,10 +6,10 @@ class EpisodesController < ApplicationController
     q = params[:q]
     if q.blank?
       @q = ""
-      @episodes = Episode.paginate(page: params[:page], per_page: 15)
+      @episodes = Episode.order(:release_date).reverse_order.paginate(page: params[:page], per_page: 15)
     elsif q.match(/#[0-9]+/)
       @q = q
-      @episode = Episode.where("MATCH (name) AGAINST ('#{q}' IN NATURAL LANGUAGE MODE)")[0]
+      @episode = Episode.order(:release_date).where("MATCH (name) AGAINST ('#{q}' IN NATURAL LANGUAGE MODE)")[0]
       if @episode.blank?
         render file: "#{Rails.root}/public/404", status: :not_found 
       else
@@ -18,9 +18,9 @@ class EpisodesController < ApplicationController
     else
       @q = q
       if params[:search].blank?
-        @episodes = Episode.where("MATCH (name, description) AGAINST ('#{q}' IN NATURAL LANGUAGE MODE)").paginate(page: params[:page], per_page: 15)
+        @episodes = Episode.order(:release_date).reverse_order.where("MATCH (name, description) AGAINST ('#{q}' IN NATURAL LANGUAGE MODE)").paginate(page: params[:page], per_page: 15)
       elsif params[:search] == "name"
-        @episodes = Episode.where("MATCH (name) AGAINST ('#{q}' IN NATURAL LANGUAGE MODE)").paginate(page: params[:page], per_page: 15)
+        @episodes = Episode.order(:release_date).reverse_order.where("MATCH (name) AGAINST ('#{q}' IN NATURAL LANGUAGE MODE)").paginate(page: params[:page], per_page: 15)
       end
     end
   end
@@ -32,7 +32,7 @@ class EpisodesController < ApplicationController
       @q = Episode.find(params[:id]).name
     elsif q.match(/#[0-9]+/)
       @q = q
-      @episode = Episode.where("MATCH (name, description) AGAINST ('#{q}' IN NATURAL LANGUAGE MODE)")[0]
+      @episode = Episode.order(:release_date).where("MATCH (name, description) AGAINST ('#{q}' IN NATURAL LANGUAGE MODE)")[0]
       
       if @episode.blank?
         render file: "#{Rails.root}/public/404", status: :not_found 
