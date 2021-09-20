@@ -50,7 +50,7 @@ body, html {
 .apple_pagination {
 	background: #404040;
 	border: 1px solid #404040;
-	margin-top: 100px;
+	margin-top: 0;
 	padding-bottom: 50px;
 	padding-right: 0.75rem;
 	text-align: center;
@@ -151,7 +151,15 @@ body, html {
 			text-decoration: none;
 			color: #404040;
 		}
-
+		.tag {
+			display: inline-block;
+			background-color: #3799FF;
+			cursor: pointer;
+			padding:  5px 10px;
+			border-radius:  5px;
+			width:  auto;
+			color:  white;
+		}
 		.card-footer {
 			padding: 0;
 			position: absolute;
