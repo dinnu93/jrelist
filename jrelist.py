@@ -5,7 +5,7 @@ import pprint
 db = pymysql.connect(host="localhost", user="root", password="password", database="jrelist")
 cursor = db.cursor()
 
-cursor.execute("DROP TABLE IF EXISTS episodes")
+#cursor.execute("DROP TABLE IF EXISTS episodes")
 sql = """CREATE TABLE episodes (
 audio_preview_url VARCHAR(255),
 description TEXT,
@@ -18,7 +18,7 @@ name VARCHAR(255),
 release_date VARCHAR(255),
 uri VARCHAR(255))"""
 
-cursor.execute(sql)
+#cursor.execute(sql)
 
 pp = pprint.PrettyPrinter(indent=4)
 
@@ -39,8 +39,8 @@ SPOTIPY_REDIRECT_URI='http://localhost'
 
 sp = spotipy.Spotify(auth_manager=SpotifyOAuth(scope=scope))
 
-for i in range(38):
-    results = sp.show_episodes('4rOoJ6Egrf8K2IrywzwOMk', offset=50*i)
+for i in range(1):
+    results = sp.show_episodes('4rOoJ6Egrf8K2IrywzwOMk', limit=1)
     for idx, item in enumerate(results['items']):
         audio_preview_url = item['audio_preview_url']
         description = item['description']
