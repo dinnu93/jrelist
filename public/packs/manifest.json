@@ -1,0 +1,34 @@
+{
+  "application.js": "/packs/js/application-b8fcb35cb2241f06329c.js",
+  "application.js.map": "/packs/js/application-b8fcb35cb2241f06329c.js.map",
+  "entrypoints": {
+    "application": {
+      "js": [
+        "/packs/js/application-b8fcb35cb2241f06329c.js"
+      ],
+      "js.map": [
+        "/packs/js/application-b8fcb35cb2241f06329c.js.map"
+      ]
+    },
+    "index": {
+      "js": [
+        "/packs/js/index-ec10335d75c475dd063f.js"
+      ],
+      "js.map": [
+        "/packs/js/index-ec10335d75c475dd063f.js.map"
+      ]
+    },
+    "jquery": {
+      "js": [
+        "/packs/js/jquery-3da3873ab2a66f477c71.js"
+      ],
+      "js.map": [
+        "/packs/js/jquery-3da3873ab2a66f477c71.js.map"
+      ]
+    }
+  },
+  "index.js": "/packs/js/index-ec10335d75c475dd063f.js",
+  "index.js.map": "/packs/js/index-ec10335d75c475dd063f.js.map",
+  "jquery.js": "/packs/js/jquery-3da3873ab2a66f477c71.js",
+  "jquery.js.map": "/packs/js/jquery-3da3873ab2a66f477c71.js.map"
+}
