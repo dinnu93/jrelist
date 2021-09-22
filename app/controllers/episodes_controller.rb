@@ -4,7 +4,10 @@ class EpisodesController < ApplicationController
   # GET /episodes or /episodes.json
   def index
     q = params[:q]
-    if q.blank?
+    if !(params[:tag_id]).blank?
+      @current_tag = Tag.includes(:episodes).find(params[:tag_id])
+      @episodes = @current_tag.episodes.order(:release_date).reverse_order.paginate(page: params[:page], per_page: 15)
+    elsif q.blank?
       @q = ""
       @episodes = Episode.includes(:tags).order(:release_date).reverse_order.paginate(page: params[:page], per_page: 15)
     elsif q.match(/^#[0-9]+/)
@@ -110,6 +113,6 @@ class EpisodesController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def episode_params
-      params.require(:episode).permit(:q, :tag, :search, :audio_preview_url, :description, :duration_ms, :web_url, :id, :image_url, :name, :release_date, :uri)
+      params.require(:episode).permit(:q, :tag_id, :tag, :search, :audio_preview_url, :description, :duration_ms, :web_url, :id, :image_url, :name, :release_date, :uri)
     end
 end

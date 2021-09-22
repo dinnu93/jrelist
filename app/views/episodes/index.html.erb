@@ -117,7 +117,7 @@
             <br>
             <div class=<%= episode.id %>>
             <% episode.tags.each do |tag| %>
-             <span class="badge bg-secondary"><%= tag.name %></span>
+             <span class="badge bg-secondary"><%= link_to tag.name, "/tags/#{tag.id}/episodes", class: 'tag-link' %></span>
             <% end %>
             </div>
             <br><br>
