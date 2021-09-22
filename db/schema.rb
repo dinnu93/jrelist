@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 0) do
+ActiveRecord::Schema.define(version: 2021_09_18_092810) do
 
   create_table "episodes", id: false, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci", force: :cascade do |t|
     t.string "audio_preview_url"
@@ -23,6 +23,25 @@ ActiveRecord::Schema.define(version: 0) do
     t.string "name"
     t.string "release_date"
     t.string "uri"
+    t.index ["description"], name: "description", type: :fulltext
+    t.index ["description"], name: "description_2", type: :fulltext
+    t.index ["name", "description"], name: "name", type: :fulltext
+    t.index ["name", "description"], name: "name_3", type: :fulltext
+    t.index ["name"], name: "name_2", type: :fulltext
+    t.index ["name"], name: "name_4", type: :fulltext
+  end
+
+  create_table "episodes_tags", id: false, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci", force: :cascade do |t|
+    t.string "episode_id"
+    t.bigint "tag_id"
+    t.index ["episode_id"], name: "index_episodes_tags_on_episode_id"
+    t.index ["tag_id"], name: "index_episodes_tags_on_tag_id"
+  end
+
+  create_table "tags", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci", force: :cascade do |t|
+    t.string "name"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
   end
 
 end

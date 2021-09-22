@@ -93,16 +93,29 @@
     <% @episodes.each do |episode| %>
     <div class="col">
       <div class="card">
-        <a href=<%= episode.web_url %> target="_blank">
+        <a href=<%= "/episodes/#{episode.id}" %>>
         <%= image_tag episode.image_url, class: "episode-image" %>
         </a>
         <div class="card-body">
-          <h5 class="card-title"><%= link_to episode.name, episode.web_url, target: "_blank" %></h5>
+          <h5 class="card-title"><%= link_to episode.name, "/episodes/#{episode.id}" %></h5>
             <audio controls>
               <source src=<%= episode.audio_preview_url %> type="audio/mp3">
             </audio>
           <p class="card-text">
+            <br>
+            <div class=<%= episode.id %>>
+            <% episode.tags.each do |tag| %>
+             <span class="badge bg-secondary"><%= tag.name %></span>
+            <% end %>
+            </div>
+            <br><br>
+            <div class="input-group mb-3">
+              <input type="text" class="form-control" placeholder="Add New Tag..." aria-describedby="button-add-tag" id=<%= "#{episode.id}" %>>
+              <button class="btn btn-success button-add-tag" type="button" id=<%= "#{episode.id}" %>><span style="font-size: 20px;" class="bi bi-plus-circle-fill"></span></button>
+            </div>
+            <!--
             <%= raw short_description(episode.html_description) %> <%= link_to "read more", "/episodes/#{episode.id}" %>
+            -->
           </p>
           <p class="card-footer">
             <%= date_converter(episode.release_date) %>&emsp;<span class="bi bi-clock">&nbsp;<%= minute_converter(episode.duration_ms) %> minutes</span><br>

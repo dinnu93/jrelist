@@ -6,10 +6,10 @@ class EpisodesController < ApplicationController
     q = params[:q]
     if q.blank?
       @q = ""
-      @episodes = Episode.order(:release_date).reverse_order.paginate(page: params[:page], per_page: 15)
+      @episodes = Episode.includes(:tags).order(:release_date).reverse_order.paginate(page: params[:page], per_page: 15)
     elsif q.match(/^#[0-9]+/)
       @q = q
-      @episode = Episode.order(:release_date).where("MATCH (name) AGAINST ('#{q}' IN NATURAL LANGUAGE MODE)")[0]
+      @episode = Episode.includes(:tags).order(:release_date).where("MATCH (name) AGAINST ('#{q}' IN NATURAL LANGUAGE MODE)")[0]
       if @episode.blank?
         render file: "#{Rails.root}/public/404", status: :not_found 
       else
@@ -18,10 +18,14 @@ class EpisodesController < ApplicationController
     else
       @q = q
       if params[:search].blank?
-        @episodes = Episode.order(:release_date).reverse_order.where("MATCH (name, description) AGAINST ('#{q}' IN NATURAL LANGUAGE MODE)").paginate(page: params[:page], per_page: 15)
+        @episodes = Episode.includes(:tags).order(:release_date).reverse_order.where("MATCH (name, description) AGAINST ('#{q}' IN NATURAL LANGUAGE MODE)").paginate(page: params[:page], per_page: 15)
       elsif params[:search] == "name"
-        @episodes = Episode.order(:release_date).reverse_order.where("MATCH (name) AGAINST ('#{q}' IN NATURAL LANGUAGE MODE)").paginate(page: params[:page], per_page: 15)
+        @episodes = Episode.includes(:tags).order(:release_date).reverse_order.where("MATCH (name) AGAINST ('#{q}' IN NATURAL LANGUAGE MODE)").paginate(page: params[:page], per_page: 15)
       end
+    end
+    respond_to do |format|
+      format.html { render :index }
+      format.json { render json: @episodes}
     end
   end
 
@@ -29,10 +33,10 @@ class EpisodesController < ApplicationController
   def show
     q = params[:q]
     if q.blank?
-      @q = Episode.find(params[:id]).name
+      @q = Episode.includes(:tags).find(params[:id]).name
     elsif q.match(/^#[0-9]+/)
       @q = q
-      @episode = Episode.order(:release_date).where("MATCH (name, description) AGAINST ('#{q}' IN NATURAL LANGUAGE MODE)")[0]
+      @episode = Episode.includes(:tags).order(:release_date).where("MATCH (name, description) AGAINST ('#{q}' IN NATURAL LANGUAGE MODE)")[0]
       
       if @episode.blank?
         render file: "#{Rails.root}/public/404", status: :not_found 
@@ -42,6 +46,10 @@ class EpisodesController < ApplicationController
     else
       @q = q
       redirect_to "/?q=#{@q}"
+    end
+    respond_to do |format|
+      format.html { render :show }
+      format.json { render json: @episode}
     end
   end
 
@@ -102,6 +110,6 @@ class EpisodesController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def episode_params
-      params.require(:episode).permit(:q, :search, :audio_preview_url, :description, :duration_ms, :web_url, :id, :image_url, :name, :release_date, :uri)
+      params.require(:episode).permit(:q, :tag, :search, :audio_preview_url, :description, :duration_ms, :web_url, :id, :image_url, :name, :release_date, :uri)
     end
 end
