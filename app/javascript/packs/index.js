@@ -16,7 +16,7 @@ $(document).on('turbolinks:load', function(){
 				last_tag = data;
 				tag = data.tags.at(-1)
 
-				$("div."+data.id).append('<span class="badge bg-secondary"><a href="/tags/'+tag.id+'/episodes" class="tag-link">'+ tag.name +'</a></span>');
+				$("div."+data.id).append(' <span class="badge bg-secondary"><a href="/tags/'+tag.id+'/episodes" class="tag-link">'+ tag.name +'</a></span>');
 			});
 		}
 
