@@ -51,7 +51,7 @@ class EpisodesController < ApplicationController
       redirect_to "/?q=#{@q}"
     end
     respond_to do |format|
-      format.html { render :show }
+      format.html {}
       format.json { render json: @episode}
     end
   end
