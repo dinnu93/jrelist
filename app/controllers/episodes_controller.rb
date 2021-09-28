@@ -4,6 +4,7 @@ class EpisodesController < ApplicationController
   # GET /episodes or /episodes.json
   def index
     q = params[:q]
+    @tags = Tag.all
     if !(params[:tag_id]).blank?
       @current_tag = Tag.includes(:episodes).find(params[:tag_id])
       @episodes = @current_tag.episodes.order(:release_date).reverse_order.paginate(page: params[:page], per_page: 15)
@@ -103,6 +104,7 @@ class EpisodesController < ApplicationController
   end
 
   def privacy_policy
+    @tags = Tag.all
   end
 
   private

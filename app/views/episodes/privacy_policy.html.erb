@@ -3,70 +3,14 @@
     <a class="navbar-brand" href="/"><%= image_tag "jrelist.png" %></a>
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
       <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-        <!-- <li class="nav-item dropdown">
-          <a href="#" class="nav-link dropdown-toggle" id="categoryDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">Select Topics</a>
+        <li class="nav-item dropdown">
+          <a href="#" class="nav-link dropdown-toggle" id="categoryDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">Tags</a>
           <ul class="dropdown-menu" aria-labelledby="categoryDropdown">
-            <li>
-              <%= link_to "Comedy", root_path(q: 'stand up comedian'), class: "dropdown-item" %>
-            </li>
-            <li>
-              <%= link_to "Archeology", root_path(q: '"Graham Hancock" "Randall Carlson" "John Anthony West" "Robert Schoch"'), class: "dropdown-item" %>
-            </li>
-            <li>
-              <%= link_to "Neuroscience", root_path(q: 'Neuroscientist Neuroscience'), class: "dropdown-item" %>
-            </li>
-            <li>
-              <%= link_to "Psychedelics", root_path(q: 'psychedelics fungi psychedelic'), class: "dropdown-item" %>
-            </li>
-            <li>
-              <%= link_to "Artificial Intelligence", root_path(q: '"Artificial Intelligence" "AI"'), class: "dropdown-item" %>
-            </li>
-            <li>
-              <%= link_to "Philosophy", root_path(q: 'Philosophy Philosopher'), class: "dropdown-item" %>
-            </li>
-            <li>
-              <%= link_to "Nutrition", root_path(q: 'nutrition nutritional nutritionist'), class: "dropdown-item" %>
-            </li>
-            <li>
-              <%= link_to "Scientists", root_path(q: 'Scientist'), class: "dropdown-item" %>
-            </li>
-            <li>
-              <%= link_to "Mathematicians", root_path(q: 'Mathematician'), class: "dropdown-item" %>
-            </li>
-            <li>
-              <%= link_to "Inventors", root_path(q: 'Inventor'), class: "dropdown-item" %>
-            </li>
-            <li>
-              <%= link_to "Entrepreneurs", root_path(q: 'Entrepreneur CEO'), class: "dropdown-item" %>
-            </li>
-            <li>
-              <%= link_to "Psychologists", root_path(q: 'psychologist psychology'), class: "dropdown-item" %>
-            </li>
+            <% @tags.each do |tag| %>
+              <li><%= link_to tag.name, tag_episodes_path(tag.id), class: 'dropdown-item' %></li>
+            <% end %>
           </ul>
         </li>
-        <li class="nav-item dropdown">
-          <a href="#" class="nav-link dropdown-toggle" id="guestDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">Select Guests</a>
-          <ul class="dropdown-menu" aria-labelledby="guestDropdown">
-            <% [
-              "Elon Musk", 
-              "Jordan Peterson", 
-              "Forrest Galante", 
-              "Bret Weinstein",
-              "Dave Chappelle",
-              "Shane Smith",
-              "Alex Jones",
-              "Randall Carlson",
-              "Graham Hancock",
-              "Steven Rinella"
-              ].each do |guest| %>
-
-              <li>
-                <%= link_to guest, root_path(q: "\"#{guest}\"", search: "name"), class: "dropdown-item" %>
-              </li>
-              <% end %>
-
-            </ul>
-          </li> -->
         <li class="nav-item">
           <a href="https://twitter.com/dinnu93?ref_src=twsrc%5Etfw" class="nav-link twitter-follow-button" data-show-count="false">Follow @dinnu93</a><script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
         </li>
