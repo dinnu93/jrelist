@@ -1,21 +1,16 @@
 $(document).on('turbolinks:load', function(){
-  var options = {};
-  $.ajax({
-    method: "GET",
+  var options = {
     url: "/tags.json",
-    dataType: "json"
-  })
-  .done(function(tag_data) {
-    tags = tag_data;
-    tag_names = tags.map(t => t.name);
-    
-    options = {
-      data: tag_names
-    };
+    getValue: "name",
+    list: {
+      match: {
+        enabled: true
+      }
+    },
 
-    $('*[data-behavior="autocomplete"]').easyAutocomplete(options);
-  });
-
+    theme: "square"
+  };
   
+  $('*[data-behavior="autocomplete"]').easyAutocomplete(options);
 
 });
