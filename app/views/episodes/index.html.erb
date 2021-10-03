@@ -4,9 +4,9 @@
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
       <ul class="navbar-nav me-auto mb-2 mb-lg-0">
         <li class="nav-item dropdown">
-          <a href="#" class="nav-link dropdown-toggle" id="categoryDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">Tags</a>
+          <a href="#" class="nav-link dropdown-toggle" id="categoryDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">Select Tags</a>
           <ul class="dropdown-menu" aria-labelledby="categoryDropdown">
-            <% @tags.each do |tag| %>
+            <% @tags.take(10).each do |tag| %>
               <li><%= link_to tag.name, tag_episodes_path(tag.id), class: 'dropdown-item' %></li>
             <% end %>
           </ul>
@@ -16,12 +16,13 @@
         </li>
       </ul>
     </div>
-
+    <% if params[:tag_id].blank? %>
     <div class="d-flex w-50">
       <form class="w-75 ms-5">
         <input type="search" name="q" class="form-control"  placeholder="Search for podcasts, guests & topics">
       </form>
     </div>
+    <% end %>
   </div>
 </nav>
 

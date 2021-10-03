@@ -4,7 +4,7 @@ class EpisodesController < ApplicationController
   # GET /episodes or /episodes.json
   def index
     q = params[:q]
-    @tags = Tag.all
+    @tags = Tag.includes(:episodes).all.sort_by {|t| -t.episodes.count}
     if !(params[:tag_id]).blank?
       @current_tag = Tag.includes(:episodes).find(params[:tag_id])
       @episodes = @current_tag.episodes.order(:release_date).reverse_order.paginate(page: params[:page], per_page: 15)
@@ -22,7 +22,7 @@ class EpisodesController < ApplicationController
     else
       @q = q
       if params[:search].blank?
-        @episodes = Episode.includes(:tags).order(:release_date).reverse_order.where("MATCH (name, description) AGAINST ('#{q}' IN NATURAL LANGUAGE MODE)").paginate(page: params[:page], per_page: 15)
+        @episodes = Episode.includes(:tags).where("MATCH (episodes.name, episodes.description) AGAINST ('#{q}' IN NATURAL LANGUAGE MODE)").or(Episode.includes(:tags).where("MATCH (tags.name) AGAINST ('#{q}' IN NATURAL LANGUAGE MODE)").references(:tags)).order(:release_date).reverse_order.paginate(page: params[:page], per_page: 15)
       elsif params[:search] == "name"
         @episodes = Episode.includes(:tags).order(:release_date).reverse_order.where("MATCH (name) AGAINST ('#{q}' IN NATURAL LANGUAGE MODE)").paginate(page: params[:page], per_page: 15)
       end
