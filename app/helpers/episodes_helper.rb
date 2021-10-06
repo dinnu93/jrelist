@@ -16,7 +16,7 @@ module EpisodesHelper
 	def short_description(des)
 		html_tag = des.index("<")
 		short_des = des[0..200]
-		if !html_tag.nil? && html_tag <= 200
+		if !html_tag.nil? && html_tag <= 200 && des.length < 200
 			html_tag_index = html_tag - 1
 			short_des = des[0..html_tag_index]
 		end
